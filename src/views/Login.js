@@ -47,7 +47,6 @@ const Login = () => {
     event.preventDefault();
     try {
       const data = await api.post("/sessions", { email, password });
-
       const { token } = data.data;
       login(data.data.token.token);
       api.defaults.headers["Authorization"] = `Bearer ${token.token}`;
@@ -56,6 +55,7 @@ const Login = () => {
         state: { idUser: data.data.user_id },
       });
     } catch (error) {
+      console.log(error);
       alert("Algo de errado aconteceu... Tente novamente");
     }
   }
